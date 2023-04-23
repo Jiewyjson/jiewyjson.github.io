@@ -3,8 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>cs_learn</title>
-        <meta name="robots" content="noindex" />
+        <title>模拟链表 - cs_learn</title>
 
 
         <!-- Custom HTML head -->
@@ -84,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="cs.html"><strong aria-hidden="true">1.</strong> cs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="csapp.html"><strong aria-hidden="true">1.1.</strong> csapp</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="第2章.html"><strong aria-hidden="true">1.1.1.</strong> 第2章</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="rust_index.html"><strong aria-hidden="true">2.</strong> rust_learning</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust_Fn.html"><strong aria-hidden="true">2.1.</strong> Fn</a></li><li class="chapter-item expanded "><a href="rust_linkedlist.html"><strong aria-hidden="true">2.2.</strong> 模拟链表</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="cs.html"><strong aria-hidden="true">1.</strong> cs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="csapp.html"><strong aria-hidden="true">1.1.</strong> csapp</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="第2章.html"><strong aria-hidden="true">1.1.1.</strong> 第2章</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="rust_index.html"><strong aria-hidden="true">2.</strong> rust_learning</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust_Fn.html"><strong aria-hidden="true">2.1.</strong> Fn</a></li><li class="chapter-item expanded "><a href="rust_linkedlist.html" class="active"><strong aria-hidden="true">2.2.</strong> 模拟链表</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -145,39 +144,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <p><a href="./csapp.html">cs:app</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="csapp"><a class="header" href="#csapp">cs:app</a></h1>
-<p><a href="./%E7%AC%AC2%E7%AB%A0">第2章</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="十六进制与二进制十进制转换手动"><a class="header" href="#十六进制与二进制十进制转换手动">十六进制与二进制，十进制转换(手动)</a></h2>
-<blockquote>
-<p>关于十六进制转成二进制:一个窍门是:记住十六进制的A对应十进制的10，以此类推到十六进制的F对应十进制的15.然后把十六进制的每一位用对应的十进制代替，再将十进制写成二进制，即为十六进制对应的二进制。</p>
-</blockquote>
-<blockquote>
-<p>对于当一个十进制数是<code>2^n</code> n为整数时，可以把n表示成<code>i+4j</code> ,其中<code>0&lt;=i&lt;=3</code> ,那么这个十进制数可以直接写成对应的十六进制:<code>0x2^i 后面+j个0</code>.例如:十进制下:2的11次方，<code>n=11=3+4*2</code> ，可以直接写成十六进制:<code>0x800</code>.</p>
-<p>而对于十六进制与十进制的转换,可以用短除法和乘法</p>
-</blockquote>
-<h2 id="两种顺序存储字节的方法"><a class="header" href="#两种顺序存储字节的方法">两种顺序存储字节的方法</a></h2>
-<ul>
-<li>大端法:最高有效字节在最前面   (跟手写数字一样)</li>
-<li>小端法:最低有效字节在最前面    (刚好相反)</li>
-</ul>
-<h2 id="布尔代数"><a class="header" href="#布尔代数">布尔代数</a></h2>
-<p>对于<strong>二进制表示</strong>|<strong>位向量</strong>:<code>[01101001]</code> 来说，表示集合中含有的元素是<code>0,3,5,6</code>.使用这种编码集合的方法时，布尔运算<code>|</code> 对应集合的<strong>并</strong>,<code>&amp;</code> 对应集合的<strong>交</strong>,<code>~</code> 对应集合的<strong>补</strong>.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="一些rust的杂七杂八"><a class="header" href="#一些rust的杂七杂八">一些<code>rust</code>的杂七杂八</a></h1>
-<ul>
-<li>
-<p><a href="./rust_Fn.html">迭代器</a></p>
-</li>
-<li>
-<p><a href="./rust_linkedlist.html">用rust模拟链表</a></p>
-</li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div><ul>
-<li>FnOnce约束是call_once(<strong>self</strong>)，只能调用一次，一旦调用，Closure将丧失所有权</li>
-<li>FnMut是call_mut(<strong>&amp;mut self</strong>)，能调用多次，每次调用Closure的内部状态会变化</li>
-<li>Fn是call(<strong>&amp;self</strong>)，能多次调用，每次调用Closure不变</li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div><blockquote>
+                        <blockquote>
 <p>Rustacean </p>
 </blockquote>
 <h1 id="用rsut-设计模拟简单的链表"><a class="header" href="#用rsut-设计模拟简单的链表">用Rsut 设计(模拟)简单的链表</a></h1>
@@ -463,6 +430,9 @@ impl&lt;'a, T&gt; Iterator for IterMut&lt;'a, T&gt; {
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="rust_Fn.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
 
                         <div style="clear: both"></div>
@@ -471,6 +441,9 @@ impl&lt;'a, T&gt; Iterator for IterMut&lt;'a, T&gt; {
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="rust_Fn.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
             </nav>
 
@@ -510,11 +483,6 @@ impl&lt;'a, T&gt; Iterator for IterMut&lt;'a, T&gt; {
 
         <!-- Custom JS scripts -->
 
-        <script>
-        window.addEventListener('load', function() {
-            window.setTimeout(window.print, 100);
-        });
-        </script>
 
     </div>
     </body>
