@@ -84,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Chapter 1</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="cs.html"><strong aria-hidden="true">1.</strong> cs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="csapp.html"><strong aria-hidden="true">1.1.</strong> csapp</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="第2章.html"><strong aria-hidden="true">1.1.1.</strong> 第2章</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="rust_index.html"><strong aria-hidden="true">2.</strong> rust_learning</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust_Fn.html"><strong aria-hidden="true">2.1.</strong> Fn</a></li><li class="chapter-item expanded "><a href="rust_linkedlist.html"><strong aria-hidden="true">2.2.</strong> 模拟链表</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -145,7 +145,319 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="chapter-1"><a class="header" href="#chapter-1">Chapter 1</a></h1>
+                        <p><a href="./csapp.html">cs:app</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="csapp"><a class="header" href="#csapp">cs:app</a></h1>
+<p><a href="./%E7%AC%AC2%E7%AB%A0">第2章</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="十六进制与二进制十进制转换手动"><a class="header" href="#十六进制与二进制十进制转换手动">十六进制与二进制，十进制转换(手动)</a></h2>
+<blockquote>
+<p>关于十六进制转成二进制:一个窍门是:记住十六进制的A对应十进制的10，以此类推到十六进制的F对应十进制的15.然后把十六进制的每一位用对应的十进制代替，再将十进制写成二进制，即为十六进制对应的二进制。</p>
+</blockquote>
+<blockquote>
+<p>对于当一个十进制数是<code>2^n</code> n为整数时，可以把n表示成<code>i+4j</code> ,其中<code>0&lt;=i&lt;=3</code> ,那么这个十进制数可以直接写成对应的十六进制:<code>0x2^i 后面+j个0</code>.例如:十进制下:2的11次方，<code>n=11=3+4*2</code> ，可以直接写成十六进制:<code>0x800</code>.</p>
+<p>而对于十六进制与十进制的转换,可以用短除法和乘法</p>
+</blockquote>
+<h2 id="两种顺序存储字节的方法"><a class="header" href="#两种顺序存储字节的方法">两种顺序存储字节的方法</a></h2>
+<ul>
+<li>大端法:最高有效字节在最前面   (跟手写数字一样)</li>
+<li>小端法:最低有效字节在最前面    (刚好相反)</li>
+</ul>
+<h2 id="布尔代数"><a class="header" href="#布尔代数">布尔代数</a></h2>
+<p>对于<strong>二进制表示</strong>|<strong>位向量</strong>:<code>[01101001]</code> 来说，表示集合中含有的元素是<code>0,3,5,6</code>.使用这种编码集合的方法时，布尔运算<code>|</code> 对应集合的<strong>并</strong>,<code>&amp;</code> 对应集合的<strong>交</strong>,<code>~</code> 对应集合的<strong>补</strong>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="一些rust的杂七杂八"><a class="header" href="#一些rust的杂七杂八">一些<code>rust</code>的杂七杂八</a></h1>
+<ul>
+<li>
+<p><a href="./rust_Fn.html">迭代器</a></p>
+</li>
+<li>
+<p><a href="./rust_linkedlist.html">用rust模拟链表</a></p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><ul>
+<li>FnOnce约束是call_once(<strong>self</strong>)，只能调用一次，一旦调用，Closure将丧失所有权</li>
+<li>FnMut是call_mut(<strong>&amp;mut self</strong>)，能调用多次，每次调用Closure的内部状态会变化</li>
+<li>Fn是call(<strong>&amp;self</strong>)，能多次调用，每次调用Closure不变</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><blockquote>
+<p>Rustacean </p>
+</blockquote>
+<h1 id="用rsut-设计模拟简单的链表"><a class="header" href="#用rsut-设计模拟简单的链表">用Rsut 设计(模拟)简单的链表</a></h1>
+<h2 id="知识点"><a class="header" href="#知识点">知识点</a></h2>
+<ol>
+<li>指针类型：&amp;,&amp;mut,Box,Rc,Arc,&amp;const,*mut,NonNull</li>
+<li>所有权,借用,继承可变性,内部可变性,copy</li>
+<li>关键字:struct,enum,fn,pub,impl,use...</li>
+<li>模式匹配,泛型,解构</li>
+<li>测试,</li>
+<li>unsafe:裸指针,别名,栈借用,UnsafeCell,变体variance</li>
+</ol>
+<h2 id="功能"><a class="header" href="#功能">功能</a></h2>
+<p>O(1)的分割,合并,插入和移除</p>
+<h2 id="基本布局"><a class="header" href="#基本布局">基本布局</a></h2>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct List {
+    head: Link,
+}
+enum Link {
+    Empty,
+    More(Box&lt;Node&gt;),
+}
+
+struct Node {
+    elem: i32,
+    next: Link,
+}
+<span class="boring">}</span></code></pre></pre>
+<p>这样子设计:</p>
+<ul>
+<li><code>LinkedList</code> 的所有节点都分配在同一个内存类型上（堆）?</li>
+<li>尾节点没有分配多余的<code>junk</code></li>
+<li>枚举形式具有<code>null</code> 指针优化?</li>
+</ul>
+<h2 id="注意点"><a class="header" href="#注意点">注意点</a></h2>
+<ol>
+<li>
+<p>在<code>push</code> 方法内部，把旧节点的<code>head</code> 当成新节点的<code>next</code>时:</p>
+<ol>
+<li>
+<p>不能把<code>self.head</code> 的所有权转让给<code>next</code> ,这时考虑到为<code>link</code>和<code>Node</code> 实现<code>clone</code> 的<code>trait</code></p>
+</li>
+<li>
+<p>为了让链表具有更好的性能，不使用<code>clone</code> 的方法进行插入,而是使用<code>std::mem::repalce</code>，<a href="https://rustwiki.org/zh-CN/std/mem/fn.replace.html">replace in std::mem - Rust (rustwiki.org)</a>.</p>
+<p><img src="https://wyjson.com/md/v2/202304132222020.png/webp" alt="" /></p>
+</li>
+</ol>
+</li>
+<li>
+<p>不需要手动为链表执行<code>Drop</code> 来清理。</p>
+</li>
+</ol>
+<h2 id="初版单向链表"><a class="header" href="#初版单向链表">初版单向链表</a></h2>
+<p>(准确来说应该是个栈，后进先出)</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::mem;
+pub struct List {
+    head: Link,
+}
+
+//#[derive(Clone)]
+enum Link {
+    Empty,
+    More(Box&lt;Node&gt;),
+}
+
+//#[derive(Clone)]
+struct Node {
+    elem: i32,
+    next: Link,
+}
+
+impl List {
+    pub fn new() -&gt; Self {
+        List { head: Link::Empty }
+    }
+
+    pub fn push(&amp;mut self, elem: i32) {
+        //let new_node=Node{elem:elem,next:self.head.clone()};
+        let new_node=Box::new(Node{
+            elem:elem,
+            next:mem::replace(&amp;mut self.head, Link::Empty),
+        });
+        self.head=Link::More(new_node);
+    }
+
+    pub fn pop(&amp;mut self)-&gt;Option&lt;i32&gt;{
+        match mem::replace(&amp;mut self.head,Link::Empty){
+            Link::Empty=&gt;None,
+            Link::More(node)=&gt;{
+                self.head=node.next;
+                Some(node.elem)
+            }   
+        }
+    }
+}
+
+impl Drop for List {
+    fn drop(&amp;mut self) {
+        let mut cur_link = mem::replace(&amp;mut self.head, Link::Empty);
+
+        while let Link::More(mut boxed_node) = cur_link {
+            cur_link = mem::replace(&amp;mut boxed_node.next, Link::Empty);
+        }
+    }
+}
+
+<span class="boring">}</span></code></pre></pre>
+<h2 id="优化版"><a class="header" href="#优化版">优化版</a></h2>
+<h3 id="使用option"><a class="header" href="#使用option">使用Option</a></h3>
+<p>注意到，初版的<code>Link</code> 是一个枚举,表示一个节点的状态:<code>elem</code> 或者是<code>Empty</code>。这和<code>Option</code> 一致了，可以使用<code>Option</code> 替代,即<code>Option&lt;Box&lt;Node&gt;&gt;</code> </p>
+<p>​	使用了<code>Option</code> 之后，可以用<code>take</code> 函数替代<code>mem::replace</code> </p>
+<h3 id="使用闭包"><a class="header" href="#使用闭包">使用闭包</a></h3>
+<p>在<code>pop</code> 方法中,使用<code>map</code> 接收闭包参数,<code>map</code> 会对<code>Some(x)</code> 中的值进行映射，返回一个新的<code>Some(y)</code> </p>
+<h3 id="类型改为泛型"><a class="header" href="#类型改为泛型">类型改为泛型</a></h3>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>//use std::mem;
+
+pub struct List&lt;T&gt;{
+    head:Link&lt;T&gt;,
+}
+
+type Link&lt;T&gt;=Option&lt;Box&lt;Node&lt;T&gt;&gt;&gt;;//使用别名简化长命名
+struct Node&lt;T&gt;{
+    elem:T,
+    next:Link&lt;T&gt;,
+}
+
+impl&lt;T&gt; List&lt;T&gt; {
+    pub fn new() -&gt; Self {
+        List { head: None }
+    }
+
+    pub fn push(&amp;mut self, elem: T) {
+        let new_node = Box::new(Node {
+            elem: elem,
+            //next: mem::replace(&amp;mut self.head, None),
+            next:self.head.take(),
+        });
+
+        self.head = Some(new_node);
+    }
+
+    pub fn pop(&amp;mut self) -&gt; Option&lt;T&gt; {
+        //match mem::replace(&amp;mut self.head, None)//使用option后,同take()函数替代mem::replace
+        // match self.head.take() {
+        //     None =&gt; None,
+        //     Some(node) =&gt; {
+        //         self.head = node.next;
+        //         Some(node.elem)
+        //     }
+        // }
+        self.head.take().map(|node|{
+            self.head=node.next;
+            node.elem
+        })
+    }
+}
+
+impl&lt;T&gt; Drop for List&lt;T&gt; {
+    fn drop(&amp;mut self) {
+        //let mut cur_link = mem::replace(&amp;mut self.head, None);
+        let mut cur_link = self.head.take();
+        while let Some(mut boxed_node) = cur_link {
+            // cur_link = mem::replace(&amp;mut boxed_node.next, None);
+            cur_link = boxed_node.next.take();
+        }
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<h3 id="添加peek方法"><a class="header" href="#添加peek方法">添加peek方法</a></h3>
+<p><code>as_ref &amp; as_mut </code><a href="https://rustwiki.org/zh-CN/std/option/enum.Option.html#method.as_ref">标准库</a></p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span>
+<span class="boring">fn main() {
+</span>    pub fn peek(&amp;self)-&gt;Option&lt;&amp;T&gt;{
+        self.head.as_ref().map(|node|{
+            &amp;node.elem
+        })
+    }
+
+    pub fn peek_mut(&amp;mut self)-&gt;Option&lt;&amp;mut T&gt;{
+        self.head.as_mut().map(|node|{
+            &amp;mut node.elem
+        })
+    }
+<span class="boring">}</span></code></pre></pre>
+<h3 id="添加迭代器"><a class="header" href="#添加迭代器">添加迭代器</a></h3>
+<ul>
+<li>IntoIter ---  T          拿走被迭代值的所有权</li>
+<li>IterMut --- &amp;mut T  可变借用</li>
+<li>Iter   --- &amp;T    不可变借用</li>
+</ul>
+<h4 id="intoiter"><a class="header" href="#intoiter">IntoIter</a></h4>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span>
+<span class="boring">fn main() {
+</span>//IntoIter 迭代器会转移所有权
+pub struct IntoIter&lt;T&gt;(List&lt;T&gt;);
+
+
+impl&lt;T&gt; List&lt;T&gt; {
+        pub fn into_iter(self)-&gt;IntoIter&lt;T&gt;{
+        IntoIter(self)
+    }
+}
+
+impl&lt;T&gt;Iterator for IntoIter&lt;T&gt; {
+    type Item = T;
+    fn next(&amp;mut self)-&gt;Option&lt;Self::Item&gt;{
+        self.0.pop()
+    }
+}
+
+<span class="boring">}</span></code></pre></pre>
+<h4 id="iter"><a class="header" href="#iter">Iter</a></h4>
+<p>这部分涉及生命周期,用到<code>as_ref</code>,[生命周期消除原则](<a href="https://course.rs/basic/lifetime.html#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%B6%88%E9%99%A4">认识生命周期 - Rust语言圣经(Rust Course)</a>)</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct Iter&lt;'a,T&gt;{
+    next:Option&lt;&amp;'a Node&lt;T&gt;&gt;,
+}
+
+impl&lt;T&gt; List&lt;T&gt; {
+        pub fn iter&lt;'a&gt;(&amp;'a self) -&gt; Iter&lt;'a, T&gt; {
+        Iter { next: self.head.as_deref()}
+    }
+    // pub fn iter(&amp;self) -&gt; Iter&lt;T&gt; {//根据生命周期消除原则,与上面一个等价
+    //     Iter { next: self.head.as_deref() }
+    // }
+    ////或者可以用显示生命周期消除语法'_'
+    // pub fn iter(&amp;self) -&gt; Iter&lt;'_, T&gt; {
+    //     Iter { next: self.head.as_deref() }
+    // }
+}
+
+impl &lt;'a,T&gt;Iterator for Iter&lt;'a,T&gt; {
+    type Item = &amp; 'a T;
+    fn next(&amp;mut self)-&gt;Option&lt;Self::Item&gt;{
+        self.next.map(|node|{
+            self.next=node.next.as_deref();
+            &amp;node.elem
+        })
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<h4 id="itermut"><a class="header" href="#itermut">IterMut</a></h4>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct IterMut&lt;'a, T&gt; {
+    next: Option&lt;&amp;'a mut Node&lt;T&gt;&gt;,
+}
+
+
+impl&lt;T&gt; List&lt;T&gt; {
+    
+    pub fn iter_mut(&amp;mut self) -&gt; IterMut&lt;'_, T&gt; {
+        IterMut { next: self.head.as_deref_mut() }
+    }
+}
+
+impl&lt;'a, T&gt; Iterator for IterMut&lt;'a, T&gt; {
+    type Item = &amp;'a mut T;
+
+    fn next(&amp;mut self) -&gt; Option&lt;Self::Item&gt; {
+        self.next.take().map(|node| {
+            self.next = node.next.as_deref_mut();
+            &amp;mut node.elem
+        })
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<h2 id="持久化的单向链表"><a class="header" href="#持久化的单向链表">持久化的单向链表</a></h2>
+<p>todo</p>
+<h2 id="双向链表"><a class="header" href="#双向链表">双向链表</a></h2>
+<p>todo</p>
 
                     </main>
 
