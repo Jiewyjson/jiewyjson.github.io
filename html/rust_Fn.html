@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>csapp - cs_learn</title>
+        <title>Fn - cs_learn</title>
 
 
         <!-- Custom HTML head -->
@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="cs.html"><strong aria-hidden="true">1.</strong> cs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="csapp.html" class="active"><strong aria-hidden="true">1.1.</strong> csapp</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="第2章.html"><strong aria-hidden="true">1.1.1.</strong> 第2章</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="rust_index.html"><strong aria-hidden="true">2.</strong> rust_learning</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust_Fn.html"><strong aria-hidden="true">2.1.</strong> Fn</a></li><li class="chapter-item expanded "><a href="rust_linkedlist.html"><strong aria-hidden="true">2.2.</strong> 模拟链表</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="cs.html"><strong aria-hidden="true">1.</strong> cs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="csapp.html"><strong aria-hidden="true">1.1.</strong> csapp</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="第2章.html"><strong aria-hidden="true">1.1.1.</strong> 第2章</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="rust_index.html"><strong aria-hidden="true">2.</strong> rust_learning</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust_Fn.html" class="active"><strong aria-hidden="true">2.1.</strong> Fn</a></li><li class="chapter-item expanded "><a href="rust_linkedlist.html"><strong aria-hidden="true">2.2.</strong> 模拟链表</a></li><li class="chapter-item expanded "><a href="智能指针.html"><strong aria-hidden="true">2.3.</strong> 智能指针</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -144,18 +144,21 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="csapp"><a class="header" href="#csapp">cs:app</a></h1>
-<p><a href="./%E7%AC%AC2%E7%AB%A0">第2章</a></p>
+                        <ul>
+<li>FnOnce约束是call_once(<strong>self</strong>)，只能调用一次，一旦调用，Closure将丧失所有权</li>
+<li>FnMut是call_mut(<strong>&amp;mut self</strong>)，能调用多次，每次调用Closure的内部状态会变化</li>
+<li>Fn是call(<strong>&amp;self</strong>)，能多次调用，每次调用Closure不变</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="cs.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="rust_index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="第2章.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="rust_linkedlist.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -165,11 +168,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="cs.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="rust_index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="第2章.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="rust_linkedlist.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
