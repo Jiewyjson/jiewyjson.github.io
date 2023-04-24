@@ -1,3 +1,0 @@
-- FnOnce约束是call_once(**self**)，只能调用一次，一旦调用，Closure将丧失所有权
-- FnMut是call_mut(**&mut self**)，能调用多次，每次调用Closure的内部状态会变化
-- Fn是call(**&self**)，能多次调用，每次调用Closure不变
