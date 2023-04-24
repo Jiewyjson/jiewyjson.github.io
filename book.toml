@@ -9,10 +9,10 @@ description = "somthing about the learning of CS."
 [rust]
 edition = "2021"
 
-# [build]
+[build]
 # build-dir = "cs_learn"
-# create-missing = false
-# use-default-preprocessors = false
+create-missing = false
+use-default-preprocessors = true
 
 # [preprocessor.index]
 
@@ -21,30 +21,30 @@ edition = "2021"
 # # [output.html]
 # # additional-css = ["custom.css"]
 
-# [output.html.search]
-# enable = true   
-# limit-results = 30
-# teaser-word-count = 30 
-# use-boolean-and = true
-# boost-title = 2          # ranking boost factor for matches in headers
-# boost-hierarchy = 1      # ranking boost factor for matches in page names
-# boost-paragraph = 1      # ranking boost factor for matches in text
-# expand = true            # partial words will match longer terms
-# heading-split-level = 3  # link results to heading levels
-# copy-js = true  
-# default-theme = "Rust"
-# curly-quotes = false
-# mathjax-support = true
-# cname = "jiewyjson.github.io"
-# input-404 = "not-found.md"
+[output.html.search]
+enable = true   
+limit-results = 30
+teaser-word-count = 30 
+use-boolean-and = true
+boost-title = 2          # ranking boost factor for matches in headers
+boost-hierarchy = 1      # ranking boost factor for matches in page names
+boost-paragraph = 1      # ranking boost factor for matches in text
+expand = true            # partial words will match longer terms
+heading-split-level = 3  # link results to heading levels
+copy-js = true  
+default-theme = "Rust"
+curly-quotes = false
+mathjax-support = true
+cname = "jiewyjson.github.io"
+input-404 = "not-found.md"
 
 
-# [output.html.playground]
-# editable = false         # allows editing the source code
-# copyable = true          # include the copy button for copying code snippets
-# copy-js = true           # includes the JavaScript for the code editor
-# line-numbers = false     # displays line numbers for editable code
-# runnable = true          # displays a run button for rust code
+[output.html.playground]
+editable = false         # allows editing the source code
+copyable = true          # include the copy button for copying code snippets
+copy-js = true           # includes the JavaScript for the code editor
+line-numbers = false     # displays line numbers for editable code
+runnable = true          # displays a run button for rust code
 
 
 # [output.markdown]

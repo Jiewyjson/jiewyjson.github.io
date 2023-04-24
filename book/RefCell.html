@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>智能指针 - cs_learn</title>
+        <title>RefCell - cs_learn</title>
 
 
         <!-- Custom HTML head -->
@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="cs.html"><strong aria-hidden="true">1.</strong> cs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="csapp.html"><strong aria-hidden="true">1.1.</strong> csapp</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="第2章.html"><strong aria-hidden="true">1.1.1.</strong> 第2章</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="rust_index.html"><strong aria-hidden="true">2.</strong> rust_learning</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust_Fn.html"><strong aria-hidden="true">2.1.</strong> Fn</a></li><li class="chapter-item expanded "><a href="rust_linkedlist.html"><strong aria-hidden="true">2.2.</strong> 模拟链表</a></li><li class="chapter-item expanded "><a href="智能指针.html" class="active"><strong aria-hidden="true">2.3.</strong> 智能指针</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="Box.html"><strong aria-hidden="true">2.3.1.</strong> Box</a></li><li class="chapter-item expanded "><a href="Rc.html"><strong aria-hidden="true">2.3.2.</strong> Rc</a></li><li class="chapter-item expanded "><a href="RefCell.html"><strong aria-hidden="true">2.3.3.</strong> RefCell</a></li><li class="chapter-item expanded "><a href="循环引用.html"><strong aria-hidden="true">2.3.4.</strong> 循环引用</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="cs.html"><strong aria-hidden="true">1.</strong> cs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="csapp.html"><strong aria-hidden="true">1.1.</strong> csapp</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="第2章.html"><strong aria-hidden="true">1.1.1.</strong> 第2章</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="rust_index.html"><strong aria-hidden="true">2.</strong> rust_learning</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust_Fn.html"><strong aria-hidden="true">2.1.</strong> Fn</a></li><li class="chapter-item expanded "><a href="rust_linkedlist.html"><strong aria-hidden="true">2.2.</strong> 模拟链表</a></li><li class="chapter-item expanded "><a href="智能指针.html"><strong aria-hidden="true">2.3.</strong> 智能指针</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="Box.html"><strong aria-hidden="true">2.3.1.</strong> Box</a></li><li class="chapter-item expanded "><a href="Rc.html"><strong aria-hidden="true">2.3.2.</strong> Rc</a></li><li class="chapter-item expanded "><a href="RefCell.html" class="active"><strong aria-hidden="true">2.3.3.</strong> RefCell</a></li><li class="chapter-item expanded "><a href="循环引用.html"><strong aria-hidden="true">2.3.4.</strong> 循环引用</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -144,30 +144,27 @@
 
                 <div id="content" class="content">
                     <main>
-                        <ul>
-<li>
-<p><a href="./Box.html">Box<T></a></p>
-</li>
-<li>
-<p><a href="./Rc.html">Rc<T></a></p>
-</li>
-<li>
-<p><a href="./RefCell.html">RefCell<T></a></p>
-</li>
-<li>
-<p><a href="./%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8.html">循环引用</a></p>
-</li>
+                        <blockquote>
+<p>借用规则:</p>
+<ul>
+<li>在给定的时间里,要么只能拥有一个可变引用,要么只能拥有任意数量的不可变引用</li>
+<li>引用总是有效的.</li>
 </ul>
+</blockquote>
+<blockquote>
+<p><code>Box&lt;T&gt;</code>会在编译时对借用规则进行检测</p>
+<p><code>RefCell&lt;T&gt;</code>则是在运行时检测,检测到违反借用规则时会触发<code>panic</code>来终止程序</p>
+</blockquote>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="rust_linkedlist.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="Rc.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="Box.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="循环引用.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -177,11 +174,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="rust_linkedlist.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="Rc.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="Box.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="循环引用.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

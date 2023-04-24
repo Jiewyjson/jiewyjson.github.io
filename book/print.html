@@ -84,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="cs.html"><strong aria-hidden="true">1.</strong> cs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="csapp.html"><strong aria-hidden="true">1.1.</strong> csapp</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="第2章.html"><strong aria-hidden="true">1.1.1.</strong> 第2章</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="rust_index.html"><strong aria-hidden="true">2.</strong> rust_learning</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust_Fn.html"><strong aria-hidden="true">2.1.</strong> Fn</a></li><li class="chapter-item expanded "><a href="rust_linkedlist.html"><strong aria-hidden="true">2.2.</strong> 模拟链表</a></li><li class="chapter-item expanded "><a href="智能指针.html"><strong aria-hidden="true">2.3.</strong> 智能指针</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="cs.html"><strong aria-hidden="true">1.</strong> cs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="csapp.html"><strong aria-hidden="true">1.1.</strong> csapp</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="第2章.html"><strong aria-hidden="true">1.1.1.</strong> 第2章</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="rust_index.html"><strong aria-hidden="true">2.</strong> rust_learning</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust_Fn.html"><strong aria-hidden="true">2.1.</strong> Fn</a></li><li class="chapter-item expanded "><a href="rust_linkedlist.html"><strong aria-hidden="true">2.2.</strong> 模拟链表</a></li><li class="chapter-item expanded "><a href="智能指针.html"><strong aria-hidden="true">2.3.</strong> 智能指针</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="Box.html"><strong aria-hidden="true">2.3.1.</strong> Box</a></li><li class="chapter-item expanded "><a href="Rc.html"><strong aria-hidden="true">2.3.2.</strong> Rc</a></li><li class="chapter-item expanded "><a href="RefCell.html"><strong aria-hidden="true">2.3.3.</strong> RefCell</a></li><li class="chapter-item expanded "><a href="循环引用.html"><strong aria-hidden="true">2.3.4.</strong> 循环引用</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -495,6 +495,132 @@ impl&lt;'a, T&gt; Iterator for IterMut&lt;'a, T&gt; {
 <p>todo</p>
 <h2 id="双向链表"><a class="header" href="#双向链表">双向链表</a></h2>
 <p>todo</p>
+<div style="break-before: page; page-break-before: always;"></div><ul>
+<li>
+<p><a href="./Box.html">Box<T></a></p>
+</li>
+<li>
+<p><a href="./Rc.html">Rc<T></a></p>
+</li>
+<li>
+<p><a href="./RefCell.html">RefCell<T></a></p>
+</li>
+<li>
+<p><a href="./%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8.html">循环引用</a></p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><blockquote>
+<p><code>Box&lt;T&gt;</code>是一个指针，<code>Rust</code> 可以确定一个<code>Box&lt;T&gt;</code>的大小，从而可以使用<code>Box&lt;T&gt;</code>即一个栈上的指针，指向堆中无法在编译时确定大小的 类型<code>T</code>.</p>
+</blockquote>
+<p>一个<code>Cons</code>例子:</p>
+<p>假设一个枚举类，代表一个链表节点的两种属性:一种链接下一个节点，一种是<code>Nil</code></p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use crate::List::{Cons,Nil};
+
+enum  List{
+    Cons(i32,List),
+    Nil,    
+}
+<span class="boring">}</span></code></pre></pre>
+<p>当<code>cargo build </code> 时，会报错</p>
+<pre><code class="language-shell">   Compiling Box v0.1.0 (D:\rust\projects\Box)
+error[E0072]: recursive type `List` has infinite size
+ --&gt; src\main.rs:7:1
+  |
+7 | enum  List{
+  | ^^^^^^^^^^
+8 |     Cons(i32,List),
+  |              ---- recursive without indirection
+</code></pre>
+<p>这是因为<code>Rust</code> 在编译时无法确定一个<code>List</code>的大小。</p>
+<p>这时使用<code>Box&lt;T&gt;</code>，因为其是一个指针，所以在编译时便可确定大小，同时它还指向了堆中存放的<code>List</code>。</p>
+<pre><pre class="playground"><code class="language-rust edition2021">fn main() {
+    let list = Cons(1,Box::new(Cons(2, Box::new(Cons(3,Box::new(Nil))))));
+    println!(&quot;list is {:?}&quot;,list);
+}
+
+use crate::List::{Cons, Nil};
+
+#[derive(Debug)]
+enum List {
+    Cons(i32, Box&lt;List&gt;),
+    Nil,
+}
+</code></pre></pre>
+<p>通过了编译。</p>
+<blockquote>
+<p><code>Box&lt;T&gt;</code>实现了<code>Deref trait</code>,允许将<code>BOX&lt;T&gt;</code>的值当作引用，并且当一个<code>Box&lt;T&gt;</code>的值离开作用域时，由于其实现了<code>Drop trait</code> ，将导致其指向的堆中的数据也会被自动释放。</p>
+</blockquote>
+<p><strong>三种解引用转换</strong></p>
+<ul>
+<li>当 T:<code>Deref&lt;Target=U&gt;</code>时，允许<code>&amp;T</code>转换为<code>&amp;U</code></li>
+<li>当 T:<code>DerefMut&lt;Target=U&gt;</code>时，允许<code>&amp;mut T</code>转换为<code>&amp;mut U</code></li>
+<li>当 T:<code>Deref&lt;Target=U&gt;</code>时，允许<code>&amp;mut T</code>转换为<code>&amp;U</code>.(可变转不可变)</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><blockquote>
+<p>支持多重所有权：<code>Rc&lt;T&gt;</code></p>
+</blockquote>
+<p><code>Rc&lt;T&gt;</code>会在内部维护一个用于记录值引用次数的计数器,从而确定这个值是否在被引用.（则是个强引用），只有在引用次数为0时,这个值才会被<strong>安全地释放.</strong></p>
+<p>考虑下面这种情况:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">fn main() {
+    let a=Cons(5,Box::new(Cons(2,Box::new(Nil))));
+    let b=Cons(3, Box::new(a));
+    let c=Cons(10, Box::new(a));
+}
+
+
+use crate::List::{Cons,Nil};
+enum List {
+    Cons(i32,Box&lt;List&gt;),
+    Nil,
+}
+</code></pre></pre>
+<p>链表<code>b</code>和<code>c</code>共享了<code>a</code>链表,编译时会报错:</p>
+<pre><code class="language-shell"> --&gt; src\main.rs:4:9
+  |
+4 |     let c=Cons(10, Box::new(a));
+  |         - move occurs because `a` has type `List`, which does not implement the `Copy` trait
+3 |     let b=Cons(3, Box::new(a));
+  |                            - value moved here
+4 |     let c=Cons(10, Box::new(a));
+  |  
+</code></pre>
+<blockquote>
+<p>因为在b声明后，b持有了a的所有权.此后再尝试声明c并且让c也持有a的所有权,这时的a所有权不在a上,而是在b上。</p>
+</blockquote>
+<p>使用<code>Rc::clone</code>来声明b:</p>
+<blockquote>
+<p><code>Rc::clone()</code>不是深度拷贝,只是浅度拷贝,即只增加堆上对应数据的引用次数.</p>
+</blockquote>
+<pre><pre class="playground"><code class="language-rust edition2021">use std::rc::Rc;
+fn main() {
+    let a=Rc::new(Cons(5,Rc::new(Cons(2,Rc::new(Nil)))));
+    let b=Cons(3, Rc::clone(&amp;a));
+    let c=Cons(10, Rc::clone(&amp;a));
+    println!(&quot;b is {:?}&quot;,b);
+    println!(&quot;c is {:?}&quot;,c);
+}
+
+
+use crate::List::{Cons,Nil};
+#[derive(Debug)]
+enum List {
+    Cons(i32,Rc&lt;List&gt;),
+    Nil,
+}
+</code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><blockquote>
+<p>借用规则:</p>
+<ul>
+<li>在给定的时间里,要么只能拥有一个可变引用,要么只能拥有任意数量的不可变引用</li>
+<li>引用总是有效的.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><code>Box&lt;T&gt;</code>会在编译时对借用规则进行检测</p>
+<p><code>RefCell&lt;T&gt;</code>则是在运行时检测,检测到违反借用规则时会触发<code>panic</code>来终止程序</p>
+</blockquote>
 <div style="break-before: page; page-break-before: always;"></div>
                     </main>
 
