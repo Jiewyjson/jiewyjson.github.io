@@ -35,7 +35,7 @@ copy-js = true
 default-theme = "Rust"
 curly-quotes = false
 mathjax-support = true
-cname = "rust-mdbook.wyjson.xyz"
+cname = "jiewyjson.github.io"
 input-404 = "not-found.md"
 
 
