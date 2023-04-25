@@ -37,9 +37,9 @@ editable = true
 enable = false
 
 
-# [output.theme-ace]
-# theme-white = "xcode"
-# theme-dark = "monokai"     # displays a run button for rust code
+[output.theme-ace]
+theme-white = "xcode"
+theme-dark = "monokai"     # displays a run button for rust code
 
 
 [output.html.search]
