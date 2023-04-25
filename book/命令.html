@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Box - cs_learn</title>
+        <title>命令 - cs_learn</title>
 
 
         <!-- Custom HTML head -->
@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="cs.html"><strong aria-hidden="true">1.</strong> cs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="csapp.html"><strong aria-hidden="true">1.1.</strong> csapp</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="第2章.html"><strong aria-hidden="true">1.1.1.</strong> 第2章</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="rust_index.html"><strong aria-hidden="true">2.</strong> rust_learning</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust_Fn.html"><strong aria-hidden="true">2.1.</strong> Fn</a></li><li class="chapter-item expanded "><a href="rust_linkedlist.html"><strong aria-hidden="true">2.2.</strong> 模拟链表</a></li><li class="chapter-item expanded "><a href="智能指针.html"><strong aria-hidden="true">2.3.</strong> 智能指针</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="Box.html" class="active"><strong aria-hidden="true">2.3.1.</strong> Box</a></li><li class="chapter-item expanded "><a href="Rc.html"><strong aria-hidden="true">2.3.2.</strong> Rc</a></li><li class="chapter-item expanded "><a href="RefCell.html"><strong aria-hidden="true">2.3.3.</strong> RefCell</a></li><li class="chapter-item expanded "><a href="循环引用.html"><strong aria-hidden="true">2.3.4.</strong> 循环引用</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="linux.html"><strong aria-hidden="true">3.</strong> Linux</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="命令.html"><strong aria-hidden="true">3.1.</strong> 命令</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="cs.html"><strong aria-hidden="true">1.</strong> cs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="csapp.html"><strong aria-hidden="true">1.1.</strong> csapp</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="第2章.html"><strong aria-hidden="true">1.1.1.</strong> 第2章</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="rust_index.html"><strong aria-hidden="true">2.</strong> rust_learning</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust_Fn.html"><strong aria-hidden="true">2.1.</strong> Fn</a></li><li class="chapter-item expanded "><a href="rust_linkedlist.html"><strong aria-hidden="true">2.2.</strong> 模拟链表</a></li><li class="chapter-item expanded "><a href="智能指针.html"><strong aria-hidden="true">2.3.</strong> 智能指针</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="Box.html"><strong aria-hidden="true">2.3.1.</strong> Box</a></li><li class="chapter-item expanded "><a href="Rc.html"><strong aria-hidden="true">2.3.2.</strong> Rc</a></li><li class="chapter-item expanded "><a href="RefCell.html"><strong aria-hidden="true">2.3.3.</strong> RefCell</a></li><li class="chapter-item expanded "><a href="循环引用.html"><strong aria-hidden="true">2.3.4.</strong> 循环引用</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="linux.html"><strong aria-hidden="true">3.</strong> Linux</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="命令.html" class="active"><strong aria-hidden="true">3.1.</strong> 命令</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -144,67 +144,15 @@
 
                 <div id="content" class="content">
                     <main>
-                        <blockquote>
-<p><code>Box&lt;T&gt;</code>是一个指针，<code>Rust</code> 可以确定一个<code>Box&lt;T&gt;</code>的大小，从而可以使用<code>Box&lt;T&gt;</code>即一个栈上的指针，指向堆中无法在编译时确定大小的 类型<code>T</code>.</p>
-</blockquote>
-<p>一个<code>Cons</code>例子:</p>
-<p>假设一个枚举类，代表一个链表节点的两种属性:一种链接下一个节点，一种是<code>Nil</code></p>
-<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>use crate::List::{Cons,Nil};
-
-enum  List{
-    Cons(i32,List),
-    Nil,    
-}
-<span class="boring">}</span></code></pre></pre>
-<p>当<code>cargo build </code> 时，会报错</p>
-<pre><code class="language-shell">   Compiling Box v0.1.0 (D:\rust\projects\Box)
-error[E0072]: recursive type `List` has infinite size
- --&gt; src\main.rs:7:1
-  |
-7 | enum  List{
-  | ^^^^^^^^^^
-8 |     Cons(i32,List),
-  |              ---- recursive without indirection
-</code></pre>
-<p>这是因为<code>Rust</code> 在编译时无法确定一个<code>List</code>的大小。</p>
-<p>这时使用<code>Box&lt;T&gt;</code>，因为其是一个指针，所以在编译时便可确定大小，同时它还指向了堆中存放的<code>List</code>。</p>
-<pre><pre class="playground"><code class="language-rust edition2021">fn main() {
-    let list = Cons(1,Box::new(Cons(2, Box::new(Cons(3,Box::new(Nil))))));
-    println!(&quot;list is {:?}&quot;,list);
-}
-
-use crate::List::{Cons, Nil};
-
-#[derive(Debug)]
-enum List {
-    Cons(i32, Box&lt;List&gt;),
-    Nil,
-}
-</code></pre></pre>
-<p>通过了编译。</p>
-<blockquote>
-<p><code>Box&lt;T&gt;</code>实现了<code>Deref trait</code>,允许将<code>BOX&lt;T&gt;</code>的值当作引用，并且当一个<code>Box&lt;T&gt;</code>的值离开作用域时，由于其实现了<code>Drop trait</code> ，将导致其指向的堆中的数据也会被自动释放。</p>
-</blockquote>
-<p><strong>三种解引用转换</strong></p>
-<ul>
-<li>当 T:<code>Deref&lt;Target=U&gt;</code>时，允许<code>&amp;T</code>转换为<code>&amp;U</code></li>
-<li>当 T:<code>DerefMut&lt;Target=U&gt;</code>时，允许<code>&amp;mut T</code>转换为<code>&amp;mut U</code></li>
-<li>当 T:<code>Deref&lt;Target=U&gt;</code>时，允许<code>&amp;mut T</code>转换为<code>&amp;U</code>.(可变转不可变)</li>
-</ul>
-
+                        
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="智能指针.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="linux.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="Rc.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -212,13 +160,10 @@ enum List {
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="智能指针.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="linux.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="Rc.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>
