@@ -35,7 +35,8 @@ copy-js = true
 default-theme = "Rust"
 curly-quotes = false
 mathjax-support = true
-cname = "jiewyjson.github.io"
+# cname = "jiewyjson.github.io"
+cname = "cslearn.wyjson.xyz"
 input-404 = "not-found.md"
 
 
