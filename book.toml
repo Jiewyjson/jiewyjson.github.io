@@ -12,14 +12,14 @@ edition = "2021"
 [build]
 # build-dir = "cs_learn"
 create-missing = false
-use-default-preprocessors = true
+use-default-preprocessors = false
 
 
 
 
-[preprocessor.theme]
-pagetoc = true
-sidebar-width = "250px"
+# [preprocessor.theme]
+# pagetoc = true
+# sidebar-width = "250px"
 
 [output.html]
 default-theme = "rust"
@@ -36,9 +36,9 @@ editable = true
 [output.html.print]
 enable = false
 
-[output.theme-ace]
-theme-white = "xcode"
-theme-dark = "monokai"     # displays a run button for rust code
+# [output.theme-ace]
+# theme-white = "xcode"
+# theme-dark = "monokai"     # displays a run button for rust code
 
 
 [output.html.search]
