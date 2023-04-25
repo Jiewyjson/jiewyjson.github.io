@@ -17,9 +17,9 @@ use-default-preprocessors = true
 
 
 
-[preprocessor.theme]
-pagetoc = true
-sidebar-width = "250px"
+# [preprocessor.theme]
+# pagetoc = true
+# sidebar-width = "250px"
 
 [output.html]
 default-theme = "rust"
@@ -39,7 +39,7 @@ enable = false
 [output.theme-ace]
 theme-white = "xcode"
 theme-dark = "monokai"     # displays a run button for rust code
-optional = true
+optional = false
 
 [output.html.search]
 enable = true   
