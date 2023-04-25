@@ -30,8 +30,8 @@ heading-split-level = 3  # link results to heading levels
 copy-js = true  
 default-theme = "Rust"
 curly-quotes = false
-cname = "jiewyjson.github.io"
-# cname = "cslearn.wyjson.xyz"
+# cname = "jiewyjson.github.io"
+cname = "cslearn.wyjson.xyz"
 input-404 = "not-found.md"
 
 
