@@ -37,3 +37,12 @@ jobs:
         git add .
         git commit -m "Deploy $GITHUB_SHA to gh-pages"
         git push --force --set-upstream origin gh-pages
+    - name: Setup mdbook-theme latest
+      run: |
+        curl -s https://api.github.com/repos/zjp-CN/mdbook-theme/releases/latest \
+            | grep browser_download_url \
+            | grep mdbook-theme_linux \
+            | cut -d '"' -f 4 \
+            | wget -qi -
+        tar -xvzf mdbook-theme_linux.tar.gz
+        echo $PWD >> $GITHUB_PATH
