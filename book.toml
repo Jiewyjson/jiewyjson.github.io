@@ -17,9 +17,9 @@ use-default-preprocessors = false
 
 
 
-# [preprocessor.theme]
-# pagetoc = true
-# sidebar-width = "250px"
+[preprocessor.theme]
+pagetoc = true
+sidebar-width = "250px"
 
 [output.html]
 default-theme = "rust"
