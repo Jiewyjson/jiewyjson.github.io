@@ -31,6 +31,7 @@ jobs:
                | wget -qi -
         tar -xzf mdbook-theme_linux.tar.gz -C ~/tools
         echo ~/tools >> $GITHUB_PATH
+    
     - name: Build
       run: mdbook build
     # share between different jobs
@@ -38,3 +39,13 @@ jobs:
       with:
         name: book
         path: book/
+        - name: Setup mdbook-theme latest
+      run: |
+        curl -s https://api.github.com/repos/zjp-CN/mdbook-theme/releases/latest \
+            | grep browser_download_url \
+            | grep mdbook-theme_linux \
+            | cut -d '"' -f 4 \
+            | wget -qi -
+        tar -xvzf mdbook-theme_linux.tar.gz
+        echo $PWD >> $GITHUB_PATH
+
