@@ -30,6 +30,8 @@
 
         <!-- Custom theme stylesheets -->
 
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
     <div id="body-container">
@@ -83,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="cs.html"><strong aria-hidden="true">1.</strong> cs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="csapp.html"><strong aria-hidden="true">1.1.</strong> csapp</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="第2章.html"><strong aria-hidden="true">1.1.1.</strong> 第2章</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="rust_index.html"><strong aria-hidden="true">2.</strong> rust_learning</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust_Fn.html"><strong aria-hidden="true">2.1.</strong> Fn</a></li><li class="chapter-item expanded "><a href="rust_linkedlist.html"><strong aria-hidden="true">2.2.</strong> 模拟链表</a></li><li class="chapter-item expanded "><a href="智能指针.html"><strong aria-hidden="true">2.3.</strong> 智能指针</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="Box.html"><strong aria-hidden="true">2.3.1.</strong> Box</a></li><li class="chapter-item expanded "><a href="Rc.html"><strong aria-hidden="true">2.3.2.</strong> Rc</a></li><li class="chapter-item expanded "><a href="RefCell.html"><strong aria-hidden="true">2.3.3.</strong> RefCell</a></li><li class="chapter-item expanded "><a href="循环引用.html"><strong aria-hidden="true">2.3.4.</strong> 循环引用</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="linux.html"><strong aria-hidden="true">3.</strong> Linux</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="命令.html" class="active"><strong aria-hidden="true">3.1.</strong> 命令</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="cs.html"><strong aria-hidden="true">1.</strong> cs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="csapp.html"><strong aria-hidden="true">1.1.</strong> csapp</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="2.信息的表示和处理.html"><strong aria-hidden="true">1.1.1.</strong> 2.信息的表示和处理</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="rust_index.html"><strong aria-hidden="true">2.</strong> rust_learning</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust_Fn.html"><strong aria-hidden="true">2.1.</strong> Fn</a></li><li class="chapter-item expanded "><a href="rust_linkedlist.html"><strong aria-hidden="true">2.2.</strong> 模拟链表</a></li><li class="chapter-item expanded "><a href="智能指针.html"><strong aria-hidden="true">2.3.</strong> 智能指针</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="Box.html"><strong aria-hidden="true">2.3.1.</strong> Box</a></li><li class="chapter-item expanded "><a href="Rc.html"><strong aria-hidden="true">2.3.2.</strong> Rc</a></li><li class="chapter-item expanded "><a href="RefCell.html"><strong aria-hidden="true">2.3.3.</strong> RefCell</a></li><li class="chapter-item expanded "><a href="循环引用.html"><strong aria-hidden="true">2.3.4.</strong> 循环引用</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="linux.html"><strong aria-hidden="true">3.</strong> Linux</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="命令.html" class="active"><strong aria-hidden="true">3.1.</strong> 命令</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -144,7 +146,39 @@
 
                 <div id="content" class="content">
                     <main>
-                        
+                        <h1 id="常用命令"><a class="header" href="#常用命令">常用命令</a></h1>
+<h2 id="ls-列出文件和目录"><a class="header" href="#ls-列出文件和目录">ls ——列出文件和目录</a></h2>
+<ol>
+<li>ls 显示当前目录下的文件和目录</li>
+<li>ls -F 区分文件和目录</li>
+<li>ls -a 显示隐藏文件</li>
+<li>ls -R 递归选项，可以列出当前目录所包含的子目录的文件</li>
+<li>ls -l 显示文件长列表(详细信息)</li>
+<li>ls -ld filename 查看单个文件的长列表</li>
+<li>标准通配符(? or *)进行模糊匹配</li>
+</ol>
+<h2 id="处理文件"><a class="header" href="#处理文件">处理文件</a></h2>
+<ol>
+<li>touch filename 创建一个名叫<filename>的<strong>空</strong>文件</li>
+<li>cp source destination 把源文件复制到目标对象（当<code>source</code> 和<code>destinayion</code> 都是文件名是，会将源文件复制成一个新的目标文件，且命名为<code>destination</code> ）在目标文件的尾部加上”/”. cp -R 会把整个源文件的所有文件都复制到目标文件中</li>
+</ol>
+<h2 id="链接文件"><a class="header" href="#链接文件">链接文件</a></h2>
+<ol>
+<li>
+<p>符号链接</p>
+<ol>
+<li>ln -s <file1> <file2>表示将file2链接到file1上（file2指向file1）</li>
+<li>查看<code>inode</code> 编号可以知道链接文件是独立文件：ls -i</li>
+</ol>
+</li>
+<li>
+<p>硬链接</p>
+<p>ln <file1> <file2>,使用 ls -li 查看</p>
+</li>
+</ol>
+<p><strong>硬链接只能对同一存储设备的文件建立链接，软连接则可以在不同设备的文件之间建立链接。</strong></p>
+<h2 id="重命名文件"><a class="header" href="#重命名文件">重命名文件</a></h2>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">

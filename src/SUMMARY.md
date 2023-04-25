@@ -2,7 +2,7 @@
 
 - [cs](./cs.md)
     - [csapp](./csapp.md)
-        - [第2章](./第2章.md)
+        - [2.信息的表示和处理](./2.信息的表示和处理.md)
 
 
 - [rust_learning](./rust_index.md)

@@ -47,5 +47,7 @@ copy-js = true           # includes the JavaScript for the code editor
 line-numbers = false     # displays line numbers for editable code
 runnable = true          # displays a run button for rust code
 
-
 # [output.markdown]
+
+[output.html]
+mathjax-support = true
