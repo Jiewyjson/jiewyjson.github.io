@@ -143,7 +143,8 @@
                         <div class="sidetoc"><nav class="pagetoc"></nav></div>
 
                         <h1 id="常用命令"><a class="header" href="#常用命令">常用命令</a></h1>
-<h2 id="ls-列出文件和目录"><a class="header" href="#ls-列出文件和目录">ls ——列出文件和目录</a></h2>
+<h2 id="文件命令"><a class="header" href="#文件命令">文件命令</a></h2>
+<h3 id="ls-列出文件和目录"><a class="header" href="#ls-列出文件和目录">ls ——列出文件和目录</a></h3>
 <ol>
 <li>ls 显示当前目录下的文件和目录</li>
 <li>ls -F 区分文件和目录</li>
@@ -153,12 +154,12 @@
 <li>ls -ld filename 查看单个文件的长列表</li>
 <li>标准通配符(? or *)进行模糊匹配</li>
 </ol>
-<h2 id="处理文件"><a class="header" href="#处理文件">处理文件</a></h2>
+<h3 id="处理文件"><a class="header" href="#处理文件">处理文件</a></h3>
 <ol>
 <li>touch filename 创建一个名叫<filename>的<strong>空</strong>文件</li>
 <li>cp source destination 把源文件复制到目标对象（当<code>source</code> 和<code>destinayion</code> 都是文件名是，会将源文件复制成一个新的目标文件，且命名为<code>destination</code> ）在目标文件的尾部加上”/”. cp -R 会把整个源文件的所有文件都复制到目标文件中</li>
 </ol>
-<h2 id="链接文件"><a class="header" href="#链接文件">链接文件</a></h2>
+<h3 id="链接文件"><a class="header" href="#链接文件">链接文件</a></h3>
 <ol>
 <li>
 <p>符号链接</p>
@@ -173,7 +174,42 @@
 </li>
 </ol>
 <p><strong>硬链接只能对同一存储设备的文件建立链接，软连接则可以在不同设备的文件之间建立链接。</strong></p>
-<h2 id="重命名文件"><a class="header" href="#重命名文件">重命名文件</a></h2>
+<h3 id="重命名文件"><a class="header" href="#重命名文件">重命名文件</a></h3>
+<blockquote>
+<p>又叫<strong>移动文件</strong>。</p>
+</blockquote>
+<p><code>mv</code>可以将文件从一个地方移动到另一个地方,并且不改变文件的<code>inode</code>编号和时间戳</p>
+<p>可搭配<code>-i</code> 选项，在试图覆盖已有文件时发出询问.</p>
+<p>删除文件</p>
+<p><code>rm</code>,可以搭配<code>-i</code> 进行询问;<code>-f</code> 强制删除.</p>
+<p>创建目录</p>
+<p><code>mkdir</code></p>
+<blockquote>
+<p>批量创建:<code>mkdir -p</code></p>
+</blockquote>
+<p>删除目录</p>
+<p><code>rmdir</code></p>
+<blockquote>
+<p>默认情况下,<code>rmdir</code> 是删除空目录.但是可以使用<code>rm -rf</code>:<code>-r</code> 可以向下进入删除目录中的文件并且删除自身,<code>-f</code> :强制删除.</p>
+</blockquote>
+<h3 id="查看文件类型"><a class="header" href="#查看文件类型">查看文件类型</a></h3>
+<p><code>file</code> :可以探测文件的内部并且返回文件类型</p>
+<h3 id="查看整个文件"><a class="header" href="#查看整个文件">查看整个文件</a></h3>
+<ul>
+<li>cat:查看文本内容;选项：<code>-n</code> 加上行号</li>
+<li>more:显示文本文件的内容,并且会在每页数据显示完之后暂停.</li>
+<li>less:<code>more</code>的升级版，附加的功能:
+<ul>
+<li>可以识别上下箭头和上下翻页键</li>
+</ul>
+</li>
+</ul>
+<h3 id="查看部分文件"><a class="header" href="#查看部分文件">查看部分文件</a></h3>
+<ul>
+<li>tail:默认情况下显示文本的末尾10行；可配合<code>-n</code> +数字来显示文本的最后几行。<code>-f</code>允许在其他进程使用此文件时查看文件内容。</li>
+<li>head:默认情况下显示文本的前10行；同理可以配合<code>-n</code></li>
+</ul>
+<h3 id=""><a class="header" href="#"></a></h3>
 
                     </main>
 

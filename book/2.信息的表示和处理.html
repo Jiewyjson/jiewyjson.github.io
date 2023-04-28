@@ -226,6 +226,56 @@
 <li>补码数的截断</li>
 </ul>
 <h3 id="运算"><a class="header" href="#运算">运算</a></h3>
+<h4 id="整数"><a class="header" href="#整数">整数</a></h4>
+<ul>
+<li>加法
+<ul>
+<li>无符号加法
+<ul>
+<li>正常 <code>x+y</code></li>
+<li>正溢出 <code>x+y-(1&lt;&lt;w)</code></li>
+</ul>
+</li>
+<li>补码加法
+<ul>
+<li>正溢出 <code>x+y-(1&lt;&lt;w)</code></li>
+<li>正常 <code>x+y</code></li>
+<li>负溢出 <code>x+y+(1&lt;&lt;w)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>检测无符号溢出:如果x+y的结果s&lt;x||s&lt;y</p>
+<p>检测补码溢出:</p>
+<p>​	1.正溢出,x&gt;0,y&gt;0但x+y的结果s&lt;=0; </p>
+<p>​	2.负溢出:x&lt;0,y&lt;0但s&gt;=0。</p>
+</blockquote>
+<blockquote>
+<p>计算位级补码的非表示</p>
+<p>一: 对每一位求补,再对结果+1</p>
+<p>二: 设存在一位k(k是下标),k是最右边<code>1</code> 的位置,对k左边的所有位取反.</p>
+</blockquote>
+<ul>
+<li>乘法
+<ul>
+<li>无符号乘法: <code>(x*y)mod (1&lt;&lt;w)</code></li>
+<li>补码乘法:
+<ul>
+<li>首先跟无符号乘法一样先取模,然后计算无符号转换补码</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>2的幂:</p>
+<p>​	<code>1&lt;&lt;k</code>: 表示<code>* 2的k次幂 </code></p>
+<p>​	<code>1&gt;&gt;k</code>: 表示<code>/ 2的k次幂</code></p>
+</blockquote>
+<p>无符号运算和补码运算乘以2的幂都可能会溢出，但是即便溢出，通过移位得到的结果是一样的。如<code>11</code> 的二进制4位<code>[1011]</code>,<code>11&lt;&lt;2=44</code>,即<code>[101100]</code>截断为4位<code>[1100]</code>十进制为<code>12</code>==<code>44 mod 16</code></p>
+<h4 id="浮点数"><a class="header" href="#浮点数">浮点数</a></h4>
 
                     </main>
 
